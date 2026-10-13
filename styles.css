@@ -41,7 +41,7 @@
   --dark-alpha-10: rgba(58, 58, 58, 0.1);
   --alpha-70: rgba(50, 50, 50, 0.7);
   --card-photo-hover: rgba(18, 18, 18, 0.5);
-  --card-dark-hover: #c7bcb3;
+  --card-dark-hover: #d7cec8; /* Figma bg/card-dark-hover */
   --neutral-alpha-80: rgba(250, 249, 247, 0.8);
   --white-alpha-90: rgba(255, 255, 255, 0.9);
 
@@ -399,21 +399,12 @@ img {
 }
 
 @media (hover: hover) {
-  /* Figma hover: neutral card -> decor/bg-light, dark card -> decor/bg-neutral; round button stays white */
+  /* Figma hover (card-square and card-rectangle): neutral -> decor/bg-light, dark -> bg/card-dark-hover */
   .card--neutral.card-link:hover {
     background-color: var(--decor-bg-light);
   }
 
   .card--dark.card-link:hover {
-    background-color: var(--decor-bg-neutral);
-  }
-
-  /* card-rectangle has its own hover colours */
-  .card--rect.card--neutral.card-link:hover {
-    background-color: var(--decor-bg-neutral);
-  }
-
-  .card--rect.card--dark.card-link:hover {
     background-color: var(--card-dark-hover);
   }
 
