@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon-calendar">
+<circle id="Ellipse" cx="10" cy="10" r="10" fill="#4A4A4A"/>
+<path id="Vector" d="M5 14.6C5 14.8213 5.17875 15 5.4 15H14.6C14.8213 15 15 14.8213 15 14.6V9.35H5V14.6ZM14.6 5.9H12.5V5.1C12.5 5.045 12.455 5 12.4 5H11.7C11.645 5 11.6 5.045 11.6 5.1V5.9H8.4V5.1C8.4 5.045 8.355 5 8.3 5H7.6C7.545 5 7.5 5.045 7.5 5.1V5.9H5.4C5.17875 5.9 5 6.07875 5 6.3V8.5H15V6.3C15 6.07875 14.8213 5.9 14.6 5.9Z" fill="white"/>
+</g>
+</svg>

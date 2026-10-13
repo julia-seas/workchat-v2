@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="button-round">
+<circle id="Ellipse" cx="30" cy="30" r="30" fill="#4A4A4A"/>
+<path id="Arrow" d="M11.2929 30.7071C10.9024 30.3166 10.9024 29.6834 11.2929 29.2929L17.6569 22.9289C18.0474 22.5384 18.6805 22.5384 19.0711 22.9289C19.4616 23.3195 19.4616 23.9526 19.0711 24.3431L13.4142 30L19.0711 35.6569C19.4616 36.0474 19.4616 36.6805 19.0711 37.0711C18.6805 37.4616 18.0474 37.4616 17.6569 37.0711L11.2929 30.7071ZM48 30L48 31L12 31L12 30L12 29L48 29L48 30Z" fill="white" fill-opacity="0.9"/>
+</g>
+</svg>

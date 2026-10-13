@@ -1,0 +1,1252 @@
+/* ==========================================================================
+   WorkChat Seattle — Home / Desktop 1440 (content 1200)
+   Tokens come from Figma variables / text styles.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Google Sans";
+  src: url("assets/fonts/GoogleSans.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Google Sans";
+  src: url("assets/fonts/GoogleSans-Italic.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* colors */
+  --bg-page: #edeae6;
+  --bg-card-neutral: #f5f3f1;
+  --bg-card-dark: #dbd4ce;
+  --bg-card-white: #ffffff;
+  --decor-bg-neutral: #f1eeeb;
+  --decor-bg-medium: #f5f3f1;
+  --decor-bg-light: #faf9f7;
+  --decor-icon: #857f7f;
+  --text-heading: #323232;
+  --text-body: #4a4a4a;
+  --text-white: #ffffff;
+  --button-dark: #4a4a4a;
+  --button-hover: #323232;
+  --button-white: #ffffff;
+  --button-text-dark: #4a4a4a;
+  --button-text-light: #faf9f7;
+  --button-outline: #4a4a4a;
+  --dark-alpha-10: rgba(58, 58, 58, 0.1);
+  --alpha-70: rgba(50, 50, 50, 0.7);
+  --neutral-alpha-80: rgba(250, 249, 247, 0.8);
+  --white-alpha-90: rgba(255, 255, 255, 0.9);
+
+  /* text styles */
+  /* rectangular button hover: fill sweep + text/border colour, one place to tune */
+  --btn-in-duration: 650ms;  /* mouse enters */
+  --btn-out-duration: 450ms; /* mouse leaves */
+  --btn-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  --font: "Google Sans", "Google Sans Flex", Arial, sans-serif;
+}
+
+/* ---------- base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 1440px;
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  font-optical-sizing: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+/* text styles */
+.h1 {
+  font-size: 80px;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--text-heading);
+  text-transform: capitalize;
+}
+
+.h2 {
+  font-size: 56px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--text-heading);
+  text-transform: capitalize;
+}
+
+.h3 {
+  font-size: 30px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--text-heading);
+}
+
+.caption {
+  font-size: 16px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.trim {
+  text-box: trim-both cap alphabetic;
+}
+
+/* ---------- layout helpers ---------- */
+
+.container {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* 1440 artboard centred on the page; children are placed in artboard coordinates */
+.canvas {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+}
+
+.abs {
+  position: absolute;
+}
+
+/* ---------- button (shared) ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 12px 48px;
+  border: 1px solid transparent;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition:
+    color var(--btn-out-duration) var(--btn-ease),
+    border-color var(--btn-out-duration) var(--btn-ease);
+}
+
+/* hover fill: sweeps in from the left, leaves to the right */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--button-hover);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--btn-out-duration) var(--btn-ease);
+}
+
+.btn--compact {
+  padding-inline: 36px;
+}
+
+.btn--dark {
+  background: var(--button-dark);
+  border-color: var(--button-dark);
+  color: var(--button-text-light);
+}
+
+.btn--white {
+  background: var(--button-white);
+  color: var(--button-text-dark);
+  /* no border: the 1px is moved into padding so the size stays the same */
+  border: 0;
+  padding-inline: 49px;
+}
+
+.btn--white.btn--compact {
+  padding-inline: 37px;
+}
+
+.btn--outlined {
+  background: transparent;
+  border-color: var(--button-outline);
+  color: var(--button-text-dark);
+}
+
+.btn:hover {
+  border-color: var(--button-hover);
+  color: var(--button-text-light);
+  transition:
+    color var(--btn-in-duration) var(--btn-ease),
+    border-color var(--btn-in-duration) var(--btn-ease);
+}
+
+/* white button: hover fill is decor/bg-light, the text keeps its dark colour (Figma) */
+.btn--white::before {
+  background: var(--decor-bg-light);
+}
+
+.btn--white:hover {
+  color: var(--button-text-dark);
+}
+
+.btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform var(--btn-in-duration) var(--btn-ease);
+}
+
+/* ---------- menu link (shared) ---------- */
+
+.menu-link {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--text-body);
+}
+
+.menu-link__line {
+  position: relative;
+  display: block;
+  height: 0;
+}
+
+.menu-link__line img {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: right; /* on mouse leave the line runs out to the right */
+  transition: transform 300ms ease-out;
+}
+
+.menu-link:hover .menu-link__line img,
+.menu-link.is-active .menu-link__line img,
+.menu-link[aria-current="page"] .menu-link__line img {
+  transform: scaleX(1);
+  transform-origin: left; /* on hover the line grows from the left */
+}
+
+/* ---------- round arrow button (shared) ---------- */
+
+.round-btn {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+
+.round-btn img {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- card (shared: card-square 300x300, card-rectangle 600x400) ---------- */
+
+.card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.card--neutral {
+  background: var(--bg-card-neutral);
+}
+
+.card--dark {
+  background: var(--bg-card-dark);
+}
+
+.card .round-btn {
+  position: absolute;
+}
+
+.card__title {
+  height: 21px;
+  white-space: nowrap;
+}
+
+/* card-square */
+.card--square {
+  width: 300px;
+  height: 300px;
+}
+
+.card--square .card__content {
+  left: 36px;
+  top: 36px;
+  width: 239px;
+  gap: 17px;
+}
+
+.card--square .round-btn {
+  left: 220px;
+  top: 220px;
+}
+
+/* card-rectangle */
+.card--rect {
+  width: 600px;
+  height: 400px;
+}
+
+.card--rect .card__content {
+  left: 60px;
+  top: 60px;
+  width: 447px;
+  gap: 20px;
+}
+
+.card--rect .round-btn {
+  left: 500px;
+  top: 300px;
+}
+
+/* card on top of a blurred photo: on hover the dark overlay gets stronger (Figma: alpha/70) */
+.card--photo {
+  background: none;
+}
+
+.card--photo .card__title,
+.card--photo .card__text {
+  color: var(--text-white);
+}
+
+.card__photo,
+.card__blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card__photo {
+  object-fit: cover;
+}
+
+.card__blur {
+  background: var(--dark-alpha-10);
+  -webkit-backdrop-filter: blur(17px);
+  backdrop-filter: blur(17px);
+}
+
+/* clickable card: one hover for every section
+   colors -> Figma hover variant (300ms), content zooms inside the card (350ms) */
+.card-link {
+  cursor: pointer;
+  transition: background-color 300ms ease-out;
+}
+
+.card__content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  transform-origin: center;
+  transition: transform 350ms ease-out;
+}
+
+.card .round-btn,
+.vbtn .round-btn {
+  transition: transform 350ms ease-out;
+}
+
+.card__blur {
+  transition: background-color 300ms ease-out;
+}
+
+@media (hover: hover) {
+  /* Figma hover: neutral card -> decor/bg-light, dark card -> decor/bg-neutral; round button stays white */
+  .card--neutral.card-link:hover {
+    background-color: var(--decor-bg-light);
+  }
+
+  .card--dark.card-link:hover {
+    background-color: var(--decor-bg-neutral);
+  }
+
+  .card-link:hover .card__content {
+    transform: scale(1.02);
+  }
+
+  .card-link:hover .round-btn,
+  .vbtn:hover .round-btn {
+    transform: scale(1.2); /* the circle stays white */
+  }
+
+  .card--photo:hover .card__blur {
+    background-color: var(--alpha-70);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__content,
+  .card .round-btn,
+  .vbtn .round-btn {
+    transition: none;
+  }
+
+  .card-link:hover .card__content,
+  .card-link:hover .round-btn,
+  .vbtn:hover .round-btn {
+    transform: none;
+  }
+}
+
+/* plain image tile */
+.tile {
+  display: block;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* ---------- header ---------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  margin-top: 20px;
+}
+
+.header__logo {
+  display: block;
+  width: 137px;
+  height: 45px;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 900px;
+}
+
+.header__menu {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.header__buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  height: 902px;
+  margin-top: 80px;
+}
+
+.hero__title {
+  position: absolute;
+  left: 420px;
+  top: 0;
+  white-space: nowrap;
+}
+
+.hero__text {
+  position: absolute;
+  left: 420px;
+  top: 149px;
+  width: 569px;
+}
+
+.hero__image-frame {
+  --parallax-shift: 60px; /* how far the image drifts; also how much taller than the frame it is */
+  position: absolute;
+  left: 0;
+  top: 252px;
+  width: 100%;
+  height: 650px;
+  overflow: hidden;
+}
+
+/* original photo placed like in the design: 1009px tall, its top 96px above the frame.
+   The 96px above the frame is the reserve the parallax drifts through (--parallax-shift <= 96px). */
+.hero__image {
+  position: absolute;
+  left: 0;
+  top: -96px;
+  display: block;
+  width: 100%;
+  height: 1009px;
+  max-width: none;
+  object-fit: fill;
+}
+
+.hero.is-parallax .hero__image {
+  will-change: transform;
+}
+
+/* ---------- what we do ---------- */
+
+.what-we-do {
+  height: 752px;
+  margin-top: 120px;
+}
+
+.what-we-do__title {
+  position: absolute;
+  left: 300px;
+  top: 0;
+  white-space: nowrap;
+}
+
+.what-we-do__text {
+  position: absolute;
+  left: 300px;
+  top: 70px;
+  width: 599px;
+}
+
+.what-we-do__cards {
+  position: absolute;
+  left: 0;
+  top: 152px;
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: repeat(2, 300px);
+}
+
+.what-we-do__wide {
+  grid-column: 1 / span 2;
+  position: relative;
+  overflow: hidden;
+}
+
+.what-we-do__wide img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  transform: scaleX(-1);
+}
+
+.what-we-do__illustration {
+  width: 300px;
+  height: 300px;
+}
+
+/* ---------- numbers ---------- */
+
+.numbers {
+  position: relative;
+  height: 660px;
+  margin-top: 80px;
+}
+
+.numbers__circle {
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 660px;
+  height: 660px;
+  border-radius: 50%;
+  background: var(--decor-bg-medium);
+}
+
+.numbers__bar {
+  position: absolute;
+  left: 120px;
+  top: 257px;
+  width: 30px;
+  height: 156px;
+  background: var(--text-heading);
+}
+
+.numbers__text {
+  position: absolute;
+  left: 180px;
+  top: 257px;
+  width: 313px;
+}
+
+/* outer layer: parallax (translate3d from script); inner .numbers__col: reveal animation */
+.numbers__layer {
+  position: absolute;
+  width: 300px;
+}
+
+.numbers__layer--left {
+  left: 720px;
+  top: 320px; /* start position; centred opposite the circle at 120px */
+}
+
+.numbers__layer--right {
+  left: 1020px;
+  top: 470px; /* 150px below the left column */
+}
+
+.numbers.is-parallax .numbers__layer {
+  will-change: transform;
+}
+
+.numbers__col {
+  position: relative;
+  width: 300px;
+}
+
+/* reduced motion: no scrolling effect, columns already level */
+@media (prefers-reduced-motion: reduce) {
+  .numbers__layer--left {
+    transform: translate3d(0, -200px, 0);
+  }
+
+  .numbers__layer--right {
+    transform: translate3d(0, -350px, 0);
+  }
+}
+
+.number-card {
+  position: relative;
+  width: 300px;
+  height: 210px;
+  background: var(--decor-bg-medium);
+}
+
+.number-card--light {
+  background: var(--decor-bg-light);
+}
+
+.number-card--neutral {
+  background: var(--decor-bg-neutral);
+}
+
+.number-card__value {
+  position: absolute;
+  left: 36px;
+  top: 36px;
+  font-size: 65px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--text-heading);
+  white-space: nowrap;
+}
+
+.number-card__label {
+  position: absolute;
+  left: 36px;
+  top: 160px;
+  white-space: nowrap;
+}
+
+/* ---------- community ---------- */
+
+.community {
+  position: relative;
+  height: 1197px;
+  margin-top: 80px;
+  overflow: hidden;
+}
+
+.community__gradient {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1200px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 49.909%,
+    rgba(255, 255, 255, 0) 99.519%
+  );
+}
+
+/* outer layer: parallax (translate3d from script); inner .community__item: reveal animation */
+.community__layer {
+  position: absolute;
+}
+
+.community.is-parallax .community__layer {
+  will-change: transform;
+}
+
+.community__item {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.community__item img {
+  position: absolute;
+  max-width: none;
+}
+
+.community__item--cover img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.community__item--c07 img {
+  object-fit: fill;
+}
+
+.community__layer--c10 { left: 420px; top: 0; width: 300px; height: 300px; }
+.community__layer--c09 { left: 1020px; top: 480px; width: 375px; height: 375px; }
+.community__layer--c08 { left: 570px; top: 750px; width: 300px; height: 300px; }
+.community__layer--c07 { left: 53px; top: 750px; width: 270px; height: 270px; }
+.community__layer--c06 { left: 120px; top: 180px; width: 270px; height: 270px; }
+.community__layer--c05 { left: 271px; top: 660px; width: 150px; height: 150px; }
+.community__layer--c04 { left: 870px; top: 180px; width: 150px; height: 150px; }
+.community__layer--c03 { left: 720px; top: 930px; width: 270px; height: 270px; }
+.community__layer--c02 { left: -79px; top: 480px; width: 150px; height: 150px; }
+.community__layer--c01 { left: 1254px; top: 90px; width: 150px; height: 150px; }
+
+
+.community__item--c10 img { left: -27.69%; top: 0; width: 150.04%; height: 100%; }
+.community__item--c09 img { left: 0; top: -0.13%; width: 100%; height: 143.07%; }
+.community__item--c08 img { left: -36.39%; top: -0.03%; width: 148.52%; height: 100.07%; }
+.community__item--c06 img { left: -70.12%; top: -60.09%; width: 240.23%; height: 160.2%; }
+.community__item--c05 img { left: -74.21%; top: -25.74%; width: 188.42%; height: 125.58%; }
+.community__item--c04 img { left: 0; top: -8.11%; width: 100%; height: 136.84%; }
+.community__item--c03 img { left: -20.54%; top: -3.24%; width: 141.49%; height: 106.12%; }
+
+.community__title {
+  position: absolute;
+  left: 420px;
+  top: 382px;
+  white-space: nowrap;
+}
+
+.community__text {
+  position: absolute;
+  left: 420px;
+  top: 452px;
+  width: 459px;
+}
+
+.community__button {
+  position: absolute;
+  left: 420px;
+  top: 534px;
+}
+
+/* ---------- featured event ---------- */
+
+.featured {
+  height: 555px;
+  margin-top: 100px;
+  background: var(--bg-card-neutral);
+}
+
+.featured__image-frame {
+  --parallax-shift: 60px;
+  position: absolute;
+  left: 600px;
+  top: 0;
+  width: 600px;
+  height: 555px;
+  overflow: hidden;
+}
+
+/* original photo placed like in the design: 600x900, its top 172px above the frame
+   (the reserve above the frame is what the parallax drifts through) */
+.featured__image {
+  position: absolute;
+  left: 0;
+  top: -172px;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+
+.featured.is-parallax .featured__image {
+  will-change: transform;
+}
+
+.featured__label {
+  position: absolute;
+  left: 80px;
+  top: 80px;
+  white-space: nowrap;
+}
+
+.featured__title {
+  position: absolute;
+  left: 80px;
+  top: 110px;
+  width: 473px;
+}
+
+.featured__text {
+  position: absolute;
+  left: 80px;
+  top: 282px;
+  width: 374px;
+}
+
+.featured__details {
+  position: absolute;
+  left: 80px;
+  top: 362px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.featured__detail {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.featured__detail img {
+  width: 20px;
+  height: 20px;
+}
+
+.featured__buttons {
+  position: absolute;
+  left: 80px;
+  top: 427px;
+  display: flex;
+  gap: 10px;
+}
+
+/* ---------- resource hub ---------- */
+
+.resource-hub {
+  height: 890px;
+  margin-top: 160px;
+}
+
+.resource-hub__title {
+  position: absolute;
+  left: 300px;
+  top: 0;
+  white-space: nowrap;
+}
+
+.resource-hub__cards {
+  position: absolute;
+  left: 0;
+  top: 90px;
+  display: grid;
+  grid-template-columns: repeat(2, 600px);
+  grid-template-rows: repeat(2, 400px);
+}
+
+/* ---------- mentorship ---------- */
+
+.mentorship {
+  height: 1200px;
+}
+
+.mentorship__bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1440px;
+  height: 1200px;
+}
+
+.mentorship__avatar {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.mentorship__avatar--08 { left: 167px; top: 490px; width: 180px; height: 180px; }
+.mentorship__avatar--07 { left: 370px; top: 750px; width: 75px; height: 75px; }
+.mentorship__avatar--05 { left: 370px; top: 350px; width: 90px; height: 90px; }
+.mentorship__avatar--04 { left: 978px; top: 306px; width: 60px; height: 60px; }
+.mentorship__avatar--03 { left: 903px; top: 677px; width: 210px; height: 210px; }
+.mentorship__avatar--02 { left: 1130px; top: 409px; width: 150px; height: 150px; }
+
+.mentorship__title {
+  position: absolute;
+  left: 421px;
+  top: 496px;
+  white-space: nowrap;
+}
+
+.mentorship__text {
+  position: absolute;
+  left: 421px;
+  top: 560px;
+  width: 557px;
+}
+
+.mentorship__buttons {
+  position: absolute;
+  left: 421px;
+  top: 640px;
+  display: flex;
+  gap: 10px;
+}
+
+/* ---------- subscribe ---------- */
+
+.subscribe {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+}
+
+.subscribe__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.subscribe__blur {
+  position: absolute;
+  inset: 0;
+  background: var(--dark-alpha-10);
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+}
+
+.subscribe__card {
+  position: absolute;
+  left: 120px;
+  top: 120px;
+  width: 1200px;
+  height: 360px;
+  background: var(--neutral-alpha-80);
+  -webkit-backdrop-filter: blur(47px);
+  backdrop-filter: blur(47px);
+}
+
+.subscribe__title {
+  position: absolute;
+  left: 423px;
+  top: 200px;
+  white-space: nowrap;
+}
+
+.subscribe__text {
+  position: absolute;
+  left: 423px;
+  top: 263px;
+  width: 557px;
+}
+
+.subscribe__form {
+  position: absolute;
+  left: 270px;
+  top: 352px;
+  display: flex;
+  width: 900px;
+}
+
+.subscribe__field {
+  width: 728px;
+  height: 48px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 0;
+  background: var(--bg-page);
+  font-family: var(--font);
+  font-size: 16px;
+  color: var(--text-body);
+}
+
+.subscribe__field::placeholder {
+  color: var(--decor-icon);
+  opacity: 1;
+}
+
+.subscribe__form .btn {
+  width: 172px;
+}
+
+/* ---------- testimonials ---------- */
+
+.testimonials {
+  height: 628px;
+  margin-top: 160px;
+}
+
+.testimonials__title {
+  position: absolute;
+  left: 303px;
+  top: 0;
+  white-space: nowrap;
+}
+
+.testimonials__row {
+  position: absolute;
+  left: 0;
+  top: 90px;
+  display: flex;
+  align-items: center;
+}
+
+.vbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 538px;
+  padding: 0;
+  border: 0;
+  background: var(--decor-bg-neutral);
+  cursor: pointer;
+}
+
+.testimonial {
+  position: relative;
+  width: 900px;
+  height: 538px;
+  background: var(--bg-card-neutral);
+}
+
+.testimonial__photo {
+  position: absolute;
+  left: 40px;
+  top: 82px;
+  width: 375px;
+  height: 375px;
+  border-radius: 50%;
+}
+
+.testimonial__photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* translucent ring is drawn over the photo */
+.testimonial__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 20px solid var(--white-alpha-90);
+  border-radius: 50%;
+}
+
+.testimonial__quote {
+  position: absolute;
+  left: 386px;
+  top: 60px;
+  width: 60px;
+  height: 40px;
+}
+
+.testimonial__body {
+  position: absolute;
+  left: 450px;
+  top: 80px;
+  width: 418px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.testimonial__lead {
+  color: var(--text-body);
+}
+
+.testimonial__text p + p {
+  margin-top: 1.3em;
+}
+
+.testimonial__author {
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+}
+
+/* ---------- get involved ---------- */
+
+.get-involved {
+  height: 400px;
+  margin-top: 160px;
+}
+
+.get-involved__title {
+  position: absolute;
+  left: 303px;
+  top: 0;
+  white-space: nowrap;
+}
+
+.get-involved__cards {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  display: flex;
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  position: relative;
+  height: 427px;
+  margin-top: 160px;
+  overflow: hidden;
+}
+
+.footer__bg {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 100%;
+  height: 387px;
+  background: var(--bg-card-neutral);
+}
+
+.footer__photo {
+  position: absolute;
+  left: 120px;
+  top: 0;
+  width: 300px;
+  height: 432px;
+  object-fit: fill;
+}
+
+.footer__legal {
+  position: absolute;
+  left: 500px;
+  top: 120px;
+  width: 231px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.footer__logo {
+  display: block;
+  width: 137px;
+  height: 45px;
+}
+
+.footer__slogan {
+  font-weight: 700;
+  color: var(--text-heading);
+  white-space: nowrap;
+}
+
+.footer__menu {
+  position: absolute;
+  left: 870px;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.footer__social {
+  position: absolute;
+  left: 870px;
+  top: 297px;
+  display: flex;
+  gap: 10px;
+}
+
+.footer__buttons {
+  position: absolute;
+  left: 1170px;
+  top: 120px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer__buttons .btn {
+  width: 100%;
+}
+
+.footer__hug {
+  position: absolute;
+  left: 1170px;
+  top: 278px;
+  width: 150px;
+  height: 68px;
+}
+
+/* social button (shared) */
+
+.social-btn {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.social-btn img {
+  width: 100%;
+  height: 100%;
+}
+
+.social-btn {
+  transition: transform 350ms ease-out;
+}
+
+/* same zoom as the round arrow buttons; the circle colour does not change */
+@media (hover: hover) {
+  .social-btn:hover {
+    transform: scale(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-btn {
+    transition: none;
+  }
+
+  .social-btn:hover {
+    transform: none;
+  }
+}
