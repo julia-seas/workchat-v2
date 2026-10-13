@@ -1250,3 +1250,18 @@ img {
     transform: none;
   }
 }
+
+/* ---------- scroll reveal (classes set by the script at the end of index.html) ---------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 600ms ease-out var(--reveal-delay, 0ms),
+    transform 600ms ease-out var(--reveal-delay, 0ms),
+    background-color 300ms ease-out; /* keeps the card hover colour change */
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
