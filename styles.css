@@ -40,6 +40,8 @@
   --button-outline: #4a4a4a;
   --dark-alpha-10: rgba(58, 58, 58, 0.1);
   --alpha-70: rgba(50, 50, 50, 0.7);
+  --card-photo-hover: rgba(18, 18, 18, 0.5);
+  --card-dark-hover: #c7bcb3;
   --neutral-alpha-80: rgba(250, 249, 247, 0.8);
   --white-alpha-90: rgba(255, 255, 255, 0.9);
 
@@ -67,6 +69,7 @@ html {
 body {
   margin: 0;
   min-width: 1440px;
+  padding-top: 68px; /* keeps the page where it was under the fixed header */
   background: var(--bg-page);
   color: var(--text-body);
   font-family: var(--font);
@@ -154,7 +157,7 @@ img {
   align-items: center;
   justify-content: center;
   height: 48px;
-  padding: 12px 48px;
+  padding: 12px 24px;
   border: 1px solid transparent;
   font-family: var(--font);
   font-size: 16px;
@@ -182,11 +185,9 @@ img {
   transition: transform var(--btn-out-duration) var(--btn-ease);
 }
 
-.btn--compact {
-  padding-inline: 36px;
-}
-
 .btn--dark {
+  /* Figma: 24px side padding, no border (the transparent 1px border is taken from the padding) */
+  padding-inline: 23px;
   background: var(--button-dark);
   border-color: var(--button-dark);
   color: var(--button-text-light);
@@ -195,13 +196,9 @@ img {
 .btn--white {
   background: var(--button-white);
   color: var(--button-text-dark);
-  /* no border: the 1px is moved into padding so the size stays the same */
+  /* no border: 24px side padding like in Figma */
   border: 0;
-  padding-inline: 49px;
-}
-
-.btn--white.btn--compact {
-  padding-inline: 37px;
+  padding-inline: 24px;
 }
 
 .btn--outlined {
@@ -299,8 +296,13 @@ img {
   background: var(--bg-card-dark);
 }
 
-.card .round-btn {
+.card__link {
   position: absolute;
+  left: 36px;
+  bottom: 36px;
+  /* zooms with .card__content: the origin is the horizontal centre of the content block (content width / 2) */
+  transform-origin: 114px 50%;
+  transition: transform 350ms ease-out;
 }
 
 .card__title {
@@ -317,13 +319,8 @@ img {
 .card--square .card__content {
   left: 36px;
   top: 36px;
-  width: 239px;
+  width: 228px;
   gap: 17px;
-}
-
-.card--square .round-btn {
-  left: 220px;
-  top: 220px;
 }
 
 /* card-rectangle */
@@ -339,9 +336,10 @@ img {
   gap: 20px;
 }
 
-.card--rect .round-btn {
-  left: 500px;
-  top: 300px;
+.card--rect .card__link {
+  left: 60px;
+  bottom: 60px;
+  transform-origin: 223.5px 50%;
 }
 
 /* card on top of a blurred photo: on hover the dark overlay gets stronger (Figma: alpha/70) */
@@ -350,8 +348,13 @@ img {
 }
 
 .card--photo .card__title,
-.card--photo .card__text {
+.card--photo .card__text,
+.card--photo .card__link {
   color: var(--text-white);
+}
+
+.card--photo .card__link .menu-link__line img {
+  filter: brightness(0) invert(1); /* white underline */
 }
 
 .card__photo,
@@ -387,7 +390,6 @@ img {
   transition: transform 350ms ease-out;
 }
 
-.card .round-btn,
 .vbtn .round-btn {
   transition: transform 350ms ease-out;
 }
@@ -406,29 +408,44 @@ img {
     background-color: var(--decor-bg-neutral);
   }
 
-  .card-link:hover .card__content {
+  /* card-rectangle has its own hover colours */
+  .card--rect.card--neutral.card-link:hover {
+    background-color: var(--decor-bg-neutral);
+  }
+
+  .card--rect.card--dark.card-link:hover {
+    background-color: var(--card-dark-hover);
+  }
+
+  /* the link underline runs in when the whole card is hovered */
+  .card-link:hover .card__link .menu-link__line img {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .card-link:hover .card__content,
+  .card-link:hover .card__link {
     transform: scale(1.02);
   }
 
-  .card-link:hover .round-btn,
   .vbtn:hover .round-btn {
     transform: scale(1.2); /* the circle stays white */
   }
 
   .card--photo:hover .card__blur {
-    background-color: var(--alpha-70);
+    background-color: var(--card-photo-hover);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .card__content,
-  .card .round-btn,
+  .card__link,
   .vbtn .round-btn {
     transition: none;
   }
 
   .card-link:hover .card__content,
-  .card-link:hover .round-btn,
+  .card-link:hover .card__link,
   .vbtn:hover .round-btn {
     transform: none;
   }
@@ -444,12 +461,47 @@ img {
 
 /* ---------- header ---------- */
 
+/* fixed full-width bar; transparent at the top of the page, translucent + blurred once scrolled */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  min-width: 1440px;
+  height: 72px; /* 12px + 48px header + 12px; body padding-top keeps the content where it was */
+  padding-top: 12px;
+  background-color: rgba(237, 234, 230, 0); /* bg-page, see --bg-page */
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  transition:
+    background-color 300ms ease-out,
+    -webkit-backdrop-filter 300ms ease-out,
+    backdrop-filter 300ms ease-out;
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(237, 234, 230, 0.7);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header.is-scrolled {
+    background-color: rgba(237, 234, 230, 0.92);
+  }
+}
+
+/* anchor targets stop below the fixed header */
+[id] {
+  scroll-margin-top: 72px;
+}
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 48px;
-  margin-top: 20px;
 }
 
 .header__logo {
@@ -469,6 +521,36 @@ img {
   display: flex;
   align-items: center;
   gap: 48px;
+}
+
+/* language switch (Figma "Language"): 60x16, EN | RU, the chosen one is bold with letter-spacing -0.32px */
+.lang {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 60px;
+  height: 20px; /* same height as a menu link, so the text lines up with the menu */
+}
+
+.lang__item[aria-current="true"] {
+  font-weight: 700;
+  letter-spacing: -0.32px;
+}
+
+/* the selected language has no underline (Figma), also on hover */
+.lang__item[aria-current="true"] .menu-link__line img,
+.lang__item[aria-current="true"]:hover .menu-link__line img {
+  transform: scaleX(0);
+}
+
+.lang__divider {
+  position: absolute;
+  left: 50%;
+  top: 3px; /* centre of the line = centre of the capital letters EN / RU */
+  width: 1px;
+  height: 12px;
+  background: var(--text-body);
 }
 
 .header__buttons {
@@ -861,7 +943,7 @@ img {
 /* ---------- resource hub ---------- */
 
 .resource-hub {
-  height: 890px;
+  height: 910px;
   margin-top: 160px;
 }
 
@@ -875,7 +957,7 @@ img {
 .resource-hub__cards {
   position: absolute;
   left: 0;
-  top: 90px;
+  top: 110px;
   display: grid;
   grid-template-columns: repeat(2, 600px);
   grid-template-rows: repeat(2, 400px);
@@ -987,7 +1069,7 @@ img {
 }
 
 .subscribe__field {
-  width: 728px;
+  width: 776px;
   height: 48px;
   padding: 0 28px;
   border: 0;
@@ -1003,14 +1085,10 @@ img {
   opacity: 1;
 }
 
-.subscribe__form .btn {
-  width: 172px;
-}
-
 /* ---------- testimonials ---------- */
 
 .testimonials {
-  height: 628px;
+  height: 648px;
   margin-top: 160px;
 }
 
@@ -1024,7 +1102,7 @@ img {
 .testimonials__row {
   position: absolute;
   left: 0;
-  top: 90px;
+  top: 110px;
   display: flex;
   align-items: center;
 }
@@ -1054,23 +1132,13 @@ img {
   top: 82px;
   width: 375px;
   height: 375px;
-  border-radius: 50%;
-}
-
-.testimonial__photo img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* translucent ring is drawn over the photo */
-.testimonial__photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+  box-sizing: border-box;
+  /* Figma "photo": the photo fills the whole circle, the 20px white ring (90% opacity) is an inside
+     stroke over it. The photo is the element's own background, which runs under the border,
+     so there is just one edge and no outline around the ring. */
   border: 20px solid var(--white-alpha-90);
   border-radius: 50%;
+  background: url("assets/testimonial-photo.png") center / cover no-repeat border-box;
 }
 
 .testimonial__quote {

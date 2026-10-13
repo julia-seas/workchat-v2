@@ -10,23 +10,30 @@
 <body>
 
   <!-- header -->
+  <div class="site-header" id="site-header">
   <header class="container header">
     <a href="#" aria-label="WorkChat Seattle">
       <img class="header__logo" src="assets/logo.svg" alt="WorkChat Seattle">
     </a>
     <nav class="header__nav">
       <div class="header__menu">
-        <a class="menu-link" href="#">About US<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
+        <a class="menu-link" href="#">About Us<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
         <a class="menu-link" href="#events">Events<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
         <a class="menu-link" href="#mentorship">Mentorship<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
         <a class="menu-link" href="#resource-hub">Resource Hub<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
       </div>
+      <div class="lang" role="group" aria-label="Language">
+        <a class="menu-link lang__item is-active" href="#" lang="en" aria-current="true">EN<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
+        <span class="lang__divider" aria-hidden="true"></span>
+        <a class="menu-link lang__item" href="#" lang="ru">RU<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
+      </div>
       <div class="header__buttons">
-        <a class="btn btn--white btn--compact" href="#get-involved">Volunteer</a>
+        <a class="btn btn--white" href="#get-involved">Volunteer</a>
         <a class="btn btn--dark" href="#get-involved">Donate</a>
       </div>
     </nav>
   </header>
+  </div>
 
   <main>
 
@@ -50,7 +57,7 @@
             <h3 class="h3 trim card__title">Events</h3>
             <p class="card__text">Join our virtual and in-person workshops and expert talks covering career growth, leadership, and professional development topics.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">See all events<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
         <img class="tile" src="assets/what-we-do-2.png" alt="Hands writing on paper at a table">
 
@@ -59,7 +66,7 @@
             <h3 class="h3 trim card__title">Mentorship</h3>
             <p class="card__text">Connect with experienced professionals who can guide you through your career journey and help you achieve your goals.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">Find a mentor<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
         <img class="tile" src="assets/what-we-do-3.png" alt="Person typing on a laptop">
         <img class="what-we-do__illustration" src="assets/illustration-hug.svg" alt="">
@@ -68,7 +75,7 @@
             <h3 class="h3 trim card__title">Community</h3>
             <p class="card__text">Be part of a supportive community of women who understand your unique challenges and celebrate your successes.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">Join our community<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
       </div>
     </section>
@@ -151,21 +158,21 @@
             <h3 class="h3 trim card__title">Find Work &amp; Start Earning</h3>
             <p class="card__text">Are you new to the U.S. job market and looking for a job to cover everyday expenses while you figure out your next steps? Explore job options, get help with applications, and prepare for interviews.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">Get started<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
         <a class="card card--rect card--dark card-link" href="#">
           <div class="card__content">
             <h3 class="h3 trim card__title">Launch Your U.S. Career</h3>
             <p class="card__text">Do you have professional qualifications and work experience from another country? Learn how to translate your qualifications for U.S. employers, navigate credential requirements, and land your first professional role in the U.S.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">Take the next step<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
         <a class="card card--rect card--dark card-link" href="#">
           <div class="card__content">
             <h3 class="h3 trim card__title">Advance or Change Your Career</h3>
             <p class="card__text">Already working in your field and ready for more, or considering a different path? Explore resources to pursue a promotion, negotiate better pay, or transition into a new profession.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">Move your career forward<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
         <a class="card card--rect card--photo card-link" href="#">
           <img class="card__photo" src="assets/blur-bg-photo.png" alt="">
@@ -174,7 +181,7 @@
             <h3 class="h3 trim card__title">Start or Grow Your Business</h3>
             <p class="card__text">Starting a business, freelancing, or growing your own practice? Get practical guidance on shaping your offer, setting prices, marketing your services, and attracting clients.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">Build your business<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
       </div>
     </section>
@@ -219,7 +226,7 @@
           <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-left.svg" alt=""></span>
         </button>
         <article class="testimonial">
-          <div class="testimonial__photo"><img src="assets/testimonial-photo.png" alt="Kristina E. with her child"></div>
+          <div class="testimonial__photo" role="img" aria-label="Kristina E. with her child"></div>
           <img class="testimonial__quote" src="assets/quote.svg" alt="">
           <div class="testimonial__body">
             <p class="h3 trim testimonial__lead">WorkChat has had a huge impact on my career journey.</p>
@@ -246,7 +253,7 @@
             <h3 class="h3 trim card__title">Become a Mentor</h3>
             <p class="card__text">Share your experience and guide another member through her career journey.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">Share your expertise<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
         <img class="tile" src="assets/get-involved.png" alt="Woman in a brown suit working on a laptop">
         <a class="card card--square card--neutral card-link" href="#">
@@ -254,14 +261,14 @@
             <h3 class="h3 trim card__title">Volunteer</h3>
             <p class="card__text">Lend a hand organizing or running one of our workshops or meetups.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">Volunteer with us<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
         <a class="card card--square card--dark card-link" href="#">
           <div class="card__content">
             <h3 class="h3 trim card__title">Donate</h3>
             <p class="card__text">Your support helps us keep events accessible and our programs running.</p>
           </div>
-          <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
+          <span class="menu-link card__link">Make a donation<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></span>
         </a>
       </div>
     </section>
@@ -280,7 +287,7 @@
         <p>© 2026 WorkChat Seattle.<br>All rights reserved</p>
       </div>
       <div class="footer__menu">
-        <a class="menu-link" href="#">About US<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
+        <a class="menu-link" href="#">About Us<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
         <a class="menu-link" href="#events">Events<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
         <a class="menu-link" href="#mentorship">Mentorship<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
         <a class="menu-link" href="#resource-hub">Resource Hub<span class="menu-link__line"><img src="assets/underline-hover.svg" alt=""></span></a>
@@ -603,5 +610,38 @@
     })();
   </script>
 
+  <script>
+    /* Language switch: only marks the chosen language (no translations yet). */
+    (function () {
+      var items = document.querySelectorAll(".lang__item");
+      Array.prototype.forEach.call(items, function (item) {
+        item.addEventListener("click", function (e) {
+          e.preventDefault();
+          Array.prototype.forEach.call(items, function (other) {
+            var on = other === item;
+            other.classList.toggle("is-active", on);
+            if (on) { other.setAttribute("aria-current", "true"); } else { other.removeAttribute("aria-current"); }
+          });
+        });
+      });
+    })();
+  </script>
+  <script>
+    /* Sticky header: only toggles .is-scrolled after 16px of scrolling (the look is in CSS). */
+    (function () {
+      var bar = document.getElementById("site-header");
+      if (!bar) { return; }
+      var scrolled = null;
+      function update() {
+        var on = window.scrollY > 16;
+        if (on !== scrolled) {
+          scrolled = on;
+          bar.classList.toggle("is-scrolled", on);
+        }
+      }
+      window.addEventListener("scroll", update, { passive: true });
+      update();
+    })();
+  </script>
 </body>
 </html>
