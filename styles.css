@@ -851,20 +851,13 @@ img {
   overflow: hidden;
 }
 
+/* the files are cropped to the shape they are shown in (scripts/build-images.py), so they just fill the box */
 .community__item img {
   position: absolute;
-  max-width: none;
-}
-
-.community__item--cover img {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
-.community__item--c07 img {
-  object-fit: fill;
+  max-width: none;
 }
 
 .community__layer--c10 { left: 420px; top: 0; width: 300px; height: 300px; }
@@ -878,14 +871,6 @@ img {
 .community__layer--c02 { left: -79px; top: 480px; width: 150px; height: 150px; }
 .community__layer--c01 { left: 1254px; top: 90px; width: 150px; height: 150px; }
 
-
-.community__item--c10 img { left: -27.69%; top: 0; width: 150.04%; height: 100%; }
-.community__item--c09 img { left: 0; top: -0.13%; width: 100%; height: 143.07%; }
-.community__item--c08 img { left: -36.39%; top: -0.03%; width: 148.52%; height: 100.07%; }
-.community__item--c06 img { left: -70.12%; top: -60.09%; width: 240.23%; height: 160.2%; }
-.community__item--c05 img { left: -74.21%; top: -25.74%; width: 188.42%; height: 125.58%; }
-.community__item--c04 img { left: 0; top: -8.11%; width: 100%; height: 136.84%; }
-.community__item--c03 img { left: -20.54%; top: -3.24%; width: 141.49%; height: 106.12%; }
 
 .community__title {
   position: absolute;
@@ -1493,9 +1478,8 @@ img {
   top: 0;
   width: 300px;
   height: 427px;
-  /* Figma crop: the 1536x1024 photo is 640.5px wide here, its window starts 191.6px from the left */
+  /* the file is already cropped to the Figma window (scripts/build-images.py) */
   object-fit: cover;
-  object-position: 56.27% 50%;
 }
 
 .footer__legal {

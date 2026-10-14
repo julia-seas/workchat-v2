@@ -4,6 +4,7 @@
    300,
    300
   ],
+  "display": 150,
   "files": [
    {
     "file": "avatar-02-150.webp",
@@ -24,6 +25,7 @@
    420,
    420
   ],
+  "display": 210,
   "files": [
    {
     "file": "avatar-03-210.webp",
@@ -44,6 +46,7 @@
    120,
    120
   ],
+  "display": 60,
   "files": [
    {
     "file": "avatar-04-60.webp",
@@ -64,6 +67,7 @@
    180,
    180
   ],
+  "display": 90,
   "files": [
    {
     "file": "avatar-05-90.webp",
@@ -84,6 +88,7 @@
    150,
    150
   ],
+  "display": 75,
   "files": [
    {
     "file": "avatar-07-75.webp",
@@ -104,6 +109,7 @@
    360,
    360
   ],
+  "display": 180,
   "files": [
    {
     "file": "avatar-08-180.webp",
@@ -124,6 +130,7 @@
    1024,
    683
   ],
+  "display": 600,
   "files": [
    {
     "file": "blur-bg-photo-600.webp",
@@ -139,211 +146,12 @@
    }
   ]
  },
- "community-01": {
-  "native": [
-   1400,
-   933
-  ],
-  "files": [
-   {
-    "file": "community-01-225.webp",
-    "w": 225,
-    "h": 150,
-    "bytes": 5962
-   },
-   {
-    "file": "community-01-450.webp",
-    "w": 450,
-    "h": 300,
-    "bytes": 13678
-   }
-  ]
- },
- "community-02": {
-  "native": [
-   933,
-   1400
-  ],
-  "files": [
-   {
-    "file": "community-02-150.webp",
-    "w": 150,
-    "h": 225,
-    "bytes": 4954
-   },
-   {
-    "file": "community-02-300.webp",
-    "w": 300,
-    "h": 450,
-    "bytes": 11408
-   }
-  ]
- },
- "community-03": {
-  "native": [
-   1400,
-   1050
-  ],
-  "files": [
-   {
-    "file": "community-03-382.webp",
-    "w": 382,
-    "h": 286,
-    "bytes": 14692
-   },
-   {
-    "file": "community-03-764.webp",
-    "w": 764,
-    "h": 573,
-    "bytes": 39228
-   }
-  ]
- },
- "community-04": {
-  "native": [
-   1023,
-   1400
-  ],
-  "files": [
-   {
-    "file": "community-04-150.webp",
-    "w": 150,
-    "h": 205,
-    "bytes": 5094
-   },
-   {
-    "file": "community-04-300.webp",
-    "w": 300,
-    "h": 411,
-    "bytes": 13940
-   }
-  ]
- },
- "community-05": {
-  "native": [
-   1400,
-   933
-  ],
-  "files": [
-   {
-    "file": "community-05-283.webp",
-    "w": 283,
-    "h": 189,
-    "bytes": 10736
-   },
-   {
-    "file": "community-05-566.webp",
-    "w": 566,
-    "h": 377,
-    "bytes": 27788
-   }
-  ]
- },
- "community-06": {
-  "native": [
-   1400,
-   933
-  ],
-  "files": [
-   {
-    "file": "community-06-649.webp",
-    "w": 649,
-    "h": 433,
-    "bytes": 36652
-   },
-   {
-    "file": "community-06-1298.webp",
-    "w": 1298,
-    "h": 865,
-    "bytes": 105602
-   }
-  ]
- },
- "community-07": {
-  "native": [
-   935,
-   1400
-  ],
-  "files": [
-   {
-    "file": "community-07-270.webp",
-    "w": 270,
-    "h": 404,
-    "bytes": 13932
-   },
-   {
-    "file": "community-07-540.webp",
-    "w": 540,
-    "h": 809,
-    "bytes": 36350
-   }
-  ]
- },
- "community-08": {
-  "native": [
-   1400,
-   933
-  ],
-  "files": [
-   {
-    "file": "community-08-446.webp",
-    "w": 446,
-    "h": 297,
-    "bytes": 20192
-   },
-   {
-    "file": "community-08-892.webp",
-    "w": 892,
-    "h": 594,
-    "bytes": 57098
-   }
-  ]
- },
- "community-09": {
-  "native": [
-   977,
-   1400
-  ],
-  "files": [
-   {
-    "file": "community-09-375.webp",
-    "w": 375,
-    "h": 537,
-    "bytes": 23554
-   },
-   {
-    "file": "community-09-750.webp",
-    "w": 750,
-    "h": 1075,
-    "bytes": 60480
-   }
-  ]
- },
- "community-10": {
-  "native": [
-   1400,
-   933
-  ],
-  "files": [
-   {
-    "file": "community-10-450.webp",
-    "w": 450,
-    "h": 300,
-    "bytes": 20646
-   },
-   {
-    "file": "community-10-900.webp",
-    "w": 900,
-    "h": 600,
-    "bytes": 56924
-   }
-  ]
- },
  "featured-event": {
   "native": [
    1200,
    1800
   ],
+  "display": 600,
   "files": [
    {
     "file": "featured-event-600.webp",
@@ -359,51 +167,12 @@
    }
   ]
  },
- "footer-photo": {
-  "native": [
-   1536,
-   1024
-  ],
-  "files": [
-   {
-    "file": "footer-photo-640.webp",
-    "w": 640,
-    "h": 427,
-    "bytes": 27710
-   },
-   {
-    "file": "footer-photo-1280.webp",
-    "w": 1280,
-    "h": 853,
-    "bytes": 67580
-   }
-  ]
- },
- "get-involved": {
-  "native": [
-   1024,
-   683
-  ],
-  "files": [
-   {
-    "file": "get-involved-540.webp",
-    "w": 540,
-    "h": 360,
-    "bytes": 13076
-   },
-   {
-    "file": "get-involved-1024.webp",
-    "w": 1024,
-    "h": 683,
-    "bytes": 28428
-   }
-  ]
- },
  "hero": {
   "native": [
    1536,
    1024
   ],
+  "display": 1440,
   "files": [
    {
     "file": "hero-1440.webp",
@@ -430,6 +199,7 @@
    1080,
    1080
   ],
+  "display": 375,
   "files": [
    {
     "file": "testimonial-photo-375.webp",
@@ -450,6 +220,7 @@
    1024,
    1024
   ],
+  "display": 375,
   "files": [
    {
     "file": "testimonial-photo-02-375.webp",
@@ -470,6 +241,7 @@
    1536,
    1024
   ],
+  "display": 765,
   "files": [
    {
     "file": "what-we-do-1-765.webp",
@@ -485,23 +257,305 @@
    }
   ]
  },
+ "community-01": {
+  "native": [
+   1400,
+   933
+  ],
+  "display": 150,
+  "displayH": 150,
+  "files": [
+   {
+    "file": "community-01-150.webp",
+    "w": 150,
+    "h": 150,
+    "bytes": 4592
+   },
+   {
+    "file": "community-01-300.webp",
+    "w": 300,
+    "h": 300,
+    "bytes": 10852
+   }
+  ]
+ },
+ "community-02": {
+  "native": [
+   933,
+   1400
+  ],
+  "display": 150,
+  "displayH": 150,
+  "files": [
+   {
+    "file": "community-02-150.webp",
+    "w": 150,
+    "h": 150,
+    "bytes": 3966
+   },
+   {
+    "file": "community-02-300.webp",
+    "w": 300,
+    "h": 300,
+    "bytes": 9166
+   }
+  ]
+ },
+ "community-03": {
+  "native": [
+   1400,
+   1050
+  ],
+  "display": 270,
+  "displayH": 270,
+  "files": [
+   {
+    "file": "community-03-270.webp",
+    "w": 270,
+    "h": 270,
+    "bytes": 10932
+   },
+   {
+    "file": "community-03-540.webp",
+    "w": 540,
+    "h": 540,
+    "bytes": 29854
+   }
+  ]
+ },
+ "community-04": {
+  "native": [
+   1023,
+   1400
+  ],
+  "display": 150,
+  "displayH": 150,
+  "files": [
+   {
+    "file": "community-04-150.webp",
+    "w": 150,
+    "h": 150,
+    "bytes": 4212
+   },
+   {
+    "file": "community-04-300.webp",
+    "w": 300,
+    "h": 300,
+    "bytes": 11332
+   }
+  ]
+ },
+ "community-05": {
+  "native": [
+   1400,
+   933
+  ],
+  "display": 150,
+  "displayH": 150,
+  "files": [
+   {
+    "file": "community-05-150.webp",
+    "w": 150,
+    "h": 150,
+    "bytes": 5572
+   },
+   {
+    "file": "community-05-300.webp",
+    "w": 300,
+    "h": 300,
+    "bytes": 13542
+   }
+  ]
+ },
+ "community-06": {
+  "native": [
+   1400,
+   933
+  ],
+  "display": 270,
+  "displayH": 270,
+  "files": [
+   {
+    "file": "community-06-270.webp",
+    "w": 270,
+    "h": 270,
+    "bytes": 11260
+   },
+   {
+    "file": "community-06-540.webp",
+    "w": 540,
+    "h": 540,
+    "bytes": 31498
+   }
+  ]
+ },
+ "community-07": {
+  "native": [
+   935,
+   1400
+  ],
+  "display": 270,
+  "displayH": 270,
+  "files": [
+   {
+    "file": "community-07-270.webp",
+    "w": 270,
+    "h": 270,
+    "bytes": 10278
+   },
+   {
+    "file": "community-07-540.webp",
+    "w": 540,
+    "h": 540,
+    "bytes": 28082
+   }
+  ]
+ },
+ "community-08": {
+  "native": [
+   1400,
+   933
+  ],
+  "display": 300,
+  "displayH": 300,
+  "files": [
+   {
+    "file": "community-08-300.webp",
+    "w": 300,
+    "h": 300,
+    "bytes": 13616
+   },
+   {
+    "file": "community-08-600.webp",
+    "w": 600,
+    "h": 600,
+    "bytes": 38426
+   }
+  ]
+ },
+ "community-09": {
+  "native": [
+   977,
+   1400
+  ],
+  "display": 375,
+  "displayH": 375,
+  "files": [
+   {
+    "file": "community-09-375.webp",
+    "w": 375,
+    "h": 375,
+    "bytes": 18436
+   },
+   {
+    "file": "community-09-750.webp",
+    "w": 750,
+    "h": 750,
+    "bytes": 47952
+   }
+  ]
+ },
+ "community-10": {
+  "native": [
+   1400,
+   933
+  ],
+  "display": 300,
+  "displayH": 300,
+  "files": [
+   {
+    "file": "community-10-300.webp",
+    "w": 300,
+    "h": 300,
+    "bytes": 14216
+   },
+   {
+    "file": "community-10-600.webp",
+    "w": 600,
+    "h": 600,
+    "bytes": 39248
+   }
+  ]
+ },
+ "footer-photo": {
+  "native": [
+   1536,
+   1024
+  ],
+  "display": 300,
+  "displayH": 427,
+  "files": [
+   {
+    "file": "footer-photo-300.webp",
+    "w": 300,
+    "h": 427,
+    "bytes": 12992
+   },
+   {
+    "file": "footer-photo-600.webp",
+    "w": 600,
+    "h": 854,
+    "bytes": 33892
+   }
+  ]
+ },
+ "get-involved": {
+  "native": [
+   1024,
+   683
+  ],
+  "display": 300,
+  "displayH": 360,
+  "files": [
+   {
+    "file": "get-involved-300.webp",
+    "w": 300,
+    "h": 360,
+    "bytes": 8700
+   },
+   {
+    "file": "get-involved-569.webp",
+    "w": 569,
+    "h": 683,
+    "bytes": 18830
+   }
+  ]
+ },
+ "subscribe-bg": {
+  "native": [
+   1024,
+   683
+  ],
+  "display": 1440,
+  "displayH": 600,
+  "files": [
+   {
+    "file": "subscribe-bg-1024.webp",
+    "w": 1024,
+    "h": 427,
+    "bytes": 14158
+   }
+  ]
+ },
  "what-we-do-2": {
   "native": [
    1200,
    1800
   ],
+  "display": 300,
+  "displayH": 300,
   "files": [
    {
     "file": "what-we-do-2-300.webp",
     "w": 300,
-    "h": 450,
-    "bytes": 9472
+    "h": 300,
+    "bytes": 6744
    },
    {
     "file": "what-we-do-2-600.webp",
     "w": 600,
-    "h": 900,
-    "bytes": 20324
+    "h": 600,
+    "bytes": 14744
    }
   ]
  },
@@ -510,18 +564,20 @@
    1024,
    683
   ],
+  "display": 300,
+  "displayH": 300,
   "files": [
    {
-    "file": "what-we-do-3-450.webp",
-    "w": 450,
+    "file": "what-we-do-3-300.webp",
+    "w": 300,
     "h": 300,
-    "bytes": 10926
+    "bytes": 9294
    },
    {
-    "file": "what-we-do-3-900.webp",
-    "w": 900,
+    "file": "what-we-do-3-600.webp",
+    "w": 600,
     "h": 600,
-    "bytes": 27128
+    "bytes": 22088
    }
   ]
  }
