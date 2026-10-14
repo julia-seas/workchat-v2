@@ -995,6 +995,14 @@ img {
 /* ---------- mentorship ---------- */
 
 .mentorship {
+  /* intro and hover parameters: change them here (per-element values are on the avatars/title/text below) */
+  --ring-time: 450ms;
+  --ring-step: 70ms;
+  --avatar-time: 350ms;
+  --text-time: 250ms;
+  --avatar-hover-time: 400ms;
+  --avatar-hover-scale: 1.07;
+
   height: 1200px;
 }
 
@@ -1004,19 +1012,122 @@ img {
   top: 0;
   width: 1440px;
   height: 1200px;
+  overflow: visible;
 }
 
+/* the avatar PNGs already contain the light outer ring; the wrapper floats, the image scales on hover */
 .mentorship__avatar {
   position: absolute;
+  display: block;
   border-radius: 50%;
 }
 
-.mentorship__avatar--08 { left: 167px; top: 490px; width: 180px; height: 180px; }
-.mentorship__avatar--07 { left: 370px; top: 750px; width: 75px; height: 75px; }
-.mentorship__avatar--05 { left: 370px; top: 350px; width: 90px; height: 90px; }
-.mentorship__avatar--04 { left: 978px; top: 306px; width: 60px; height: 60px; }
-.mentorship__avatar--03 { left: 903px; top: 677px; width: 210px; height: 210px; }
-.mentorship__avatar--02 { left: 1130px; top: 409px; width: 150px; height: 150px; }
+.mentorship__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transition:
+    transform var(--avatar-hover-time) ease-out,
+    filter var(--avatar-hover-time) ease-out;
+}
+
+/* per avatar: appear delay, float amplitude (px, total travel), float duration, float start offset */
+.mentorship__avatar--08 { left: 167px; top: 490px; width: 180px; height: 180px; --appear-delay: 400ms;  --float-amp: 6px;  --float-dur: 8s;   --float-offset: 0s; }
+.mentorship__avatar--07 { left: 370px; top: 750px; width: 75px;  height: 75px;  --appear-delay: 460ms;  --float-amp: 11px; --float-dur: 6.5s; --float-offset: 1.2s; }
+.mentorship__avatar--05 { left: 370px; top: 350px; width: 90px;  height: 90px;  --appear-delay: 520ms;  --float-amp: 10px; --float-dur: 7.5s; --float-offset: 2.4s; }
+.mentorship__avatar--04 { left: 978px; top: 306px; width: 60px;  height: 60px;  --appear-delay: 580ms; --float-amp: 12px; --float-dur: 6s;   --float-offset: 0.6s; }
+.mentorship__avatar--03 { left: 903px; top: 677px; width: 210px; height: 210px; --appear-delay: 640ms; --float-amp: 6px;  --float-dur: 10s;  --float-offset: 3s; }
+.mentorship__avatar--02 { left: 1130px; top: 409px; width: 150px; height: 150px; --appear-delay: 700ms; --float-amp: 8px;  --float-dur: 9s;   --float-offset: 1.8s; }
+
+/* the photos that are black and white in the file turn colour on hover (avatar 03 is already colour) */
+.mentorship__avatar--08 img,
+.mentorship__avatar--07 img,
+.mentorship__avatar--05 img,
+.mentorship__avatar--04 img,
+.mentorship__avatar--02 img {
+  filter: grayscale(1);
+}
+
+@media (hover: hover) {
+  .mentorship__avatar:hover img {
+    transform: scale(var(--avatar-hover-scale));
+    filter: grayscale(0);
+  }
+}
+
+/* ----- intro sequence (the .js class is removed for prefers-reduced-motion, then everything is just there) ----- */
+.js .mentorship__ring,
+.js .mentorship__avatar,
+.js .mentorship__title,
+.js .mentorship__text,
+.js .mentorship__buttons {
+  opacity: 0;
+}
+
+.js .mentorship.is-in .mentorship__ring {
+  opacity: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mentorship-ring var(--ring-time) ease-out var(--ring-delay) backwards;
+}
+
+.mentorship__ring--inner  { --ring-delay: 0ms; }
+.mentorship__ring--middle { --ring-delay: var(--ring-step); }
+.mentorship__ring--outer  { --ring-delay: calc(var(--ring-step) * 2); }
+
+.js .mentorship.is-in .mentorship__avatar {
+  opacity: 1;
+  animation:
+    mentorship-avatar var(--avatar-time) ease-out var(--appear-delay) backwards,
+    mentorship-float var(--float-dur) ease-in-out calc(var(--appear-delay) + var(--avatar-time) + var(--float-offset)) infinite alternate;
+}
+
+.js .mentorship.is-in .mentorship__title,
+.js .mentorship.is-in .mentorship__text,
+.js .mentorship.is-in .mentorship__buttons {
+  opacity: 1;
+  animation: mentorship-rise var(--text-time) ease-out var(--text-delay) backwards;
+}
+
+.mentorship__title   { --text-delay: 450ms; }
+.mentorship__text    { --text-delay: 500ms; }
+.mentorship__buttons { --text-delay: 550ms; }
+
+@keyframes mentorship-ring {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes mentorship-avatar {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes mentorship-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes mentorship-float {
+  from { translate: 0 0; }
+  to   { translate: 0 calc(var(--float-amp) * -1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .mentorship__ring,
+  .js .mentorship__avatar,
+  .js .mentorship__title,
+  .js .mentorship__text,
+  .js .mentorship__buttons {
+    opacity: 1;
+    animation: none !important;
+  }
+
+  .mentorship__avatar img {
+    transition: none;
+  }
+}
 
 .mentorship__title {
   position: absolute;

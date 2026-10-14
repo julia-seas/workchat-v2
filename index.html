@@ -188,13 +188,29 @@
 
     <!-- mentorship -->
     <section class="canvas mentorship" id="mentorship">
-      <img class="mentorship__bg" src="assets/mentorship-bg.svg" alt="">
-      <img class="mentorship__avatar mentorship__avatar--08" src="assets/avatar-08.png" alt="">
-      <img class="mentorship__avatar mentorship__avatar--07" src="assets/avatar-07.png" alt="">
-      <img class="mentorship__avatar mentorship__avatar--05" src="assets/avatar-05.png" alt="">
-      <img class="mentorship__avatar mentorship__avatar--04" src="assets/avatar-04.png" alt="">
-      <img class="mentorship__avatar mentorship__avatar--03" src="assets/avatar-03.png" alt="">
-      <img class="mentorship__avatar mentorship__avatar--02" src="assets/avatar-02.png" alt="">
+      <svg class="mentorship__bg" width="1440" height="1200" viewBox="0 0 1440 1200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle class="mentorship__ring mentorship__ring--outer" cx="731" cy="600" r="600" fill="#F1EEEB"/>
+        <circle class="mentorship__ring mentorship__ring--middle" cx="730.5" cy="595.5" r="487.5" fill="#F5F3F1"/>
+        <circle class="mentorship__ring mentorship__ring--inner" cx="730" cy="595" r="375" fill="#FAF9F7"/>
+        <rect width="1440" height="150" transform="matrix(1 0 0 -1 0 150)" fill="url(#mentorship-grad-top)"/>
+        <rect y="1050" width="1440" height="150" fill="url(#mentorship-grad-bottom)"/>
+        <defs>
+          <linearGradient id="mentorship-grad-top" x1="720" y1="0" x2="720" y2="150" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#EDEAE6" stop-opacity="0"/>
+            <stop offset="1" stop-color="#EDEAE6"/>
+          </linearGradient>
+          <linearGradient id="mentorship-grad-bottom" x1="720" y1="1050" x2="720" y2="1200" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#EDEAE6" stop-opacity="0"/>
+            <stop offset="1" stop-color="#EDEAE6"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="mentorship__avatar mentorship__avatar--08"><img src="assets/avatar-08.png" alt=""></span>
+      <span class="mentorship__avatar mentorship__avatar--07"><img src="assets/avatar-07.png" alt=""></span>
+      <span class="mentorship__avatar mentorship__avatar--05"><img src="assets/avatar-05.png" alt=""></span>
+      <span class="mentorship__avatar mentorship__avatar--04"><img src="assets/avatar-04.png" alt=""></span>
+      <span class="mentorship__avatar mentorship__avatar--03"><img src="assets/avatar-03.png" alt=""></span>
+      <span class="mentorship__avatar mentorship__avatar--02"><img src="assets/avatar-02.png" alt=""></span>
       <h2 class="h2 mentorship__title">Find Your Mentor</h2>
       <p class="mentorship__text">Connect with experienced professionals ready to guide your career journey. Get personalized advice, expand your network, and accelerate your growth.</p>
       <div class="mentorship__buttons">
@@ -336,7 +352,6 @@
         [".what-we-do__title", ".what-we-do__text"],
         [".featured"],
         [".resource-hub__title"],
-        [".mentorship__avatar", ".mentorship__title", ".mentorship__text", ".mentorship__buttons"],
         [".subscribe__card", ".subscribe__title", ".subscribe__text", ".subscribe__form"],
         [".testimonials__title", ".testimonials__row > *"],
         [".get-involved__title"],
@@ -795,6 +810,19 @@
         if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
         else if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
       });
+    })();
+    /* Find Your Mentor: starts the intro sequence (circles, avatars, text) when the section comes into view.
+       Timings are CSS variables in styles.css (.mentorship). */
+    (function () {
+      var section = document.querySelector(".mentorship");
+      if (!section || !document.documentElement.classList.contains("js") || !("IntersectionObserver" in window)) return;
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          section.classList.add("is-in");
+          io.disconnect();
+        }
+      }, { threshold: 0.2 });
+      io.observe(section);
     })();
   </script>
 </body>
