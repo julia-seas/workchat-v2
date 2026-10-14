@@ -673,11 +673,15 @@ img {
   overflow: hidden;
 }
 
+/* Figma crop: the 1536x1024 photo is 765x510 inside the 600x300 tile, offset -39px / -73px */
 .what-we-do__wide img {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: -6.55%;
+  top: -24.33%;
+  width: 127.5%;
+  height: 170%;
+  max-width: none;
   object-fit: fill;
-  transform: scaleX(-1);
 }
 
 .what-we-do__illustration {
