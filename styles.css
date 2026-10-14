@@ -495,6 +495,44 @@ img {
   height: 48px;
 }
 
+/* logo: the three dots "type" (jump one after another) while the logo is hovered, like the typing indicator in a messenger */
+.logo__dot {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (hover: hover) {
+  .logo:hover .logo__dot {
+    animation: logo-typing 1.2s ease-in-out infinite;
+  }
+
+  .logo:hover .logo__dot:nth-of-type(2) {
+    animation-delay: 0.15s;
+  }
+
+  .logo:hover .logo__dot:nth-of-type(3) {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes logo-typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo:hover .logo__dot {
+    animation: none;
+  }
+}
+
 .header__logo {
   display: block;
   width: 137px;
@@ -1185,6 +1223,31 @@ img {
   display: flex;
 }
 
+.get-involved__photo {
+  --parallax-shift: 60px; /* how far the photo drifts; also how much taller than the frame it is */
+  position: relative;
+  flex: none;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+
+/* the photo is taller than the frame by --parallax-shift: its top starts above the frame and drifts down */
+.get-involved__image {
+  position: absolute;
+  left: 0;
+  top: -60px;
+  display: block;
+  width: 300px;
+  height: 360px;
+  max-width: none;
+  object-fit: cover;
+}
+
+.get-involved.is-parallax .get-involved__image {
+  will-change: transform;
+}
+
 /* ---------- footer ---------- */
 
 .footer {
@@ -1243,6 +1306,12 @@ img {
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
+}
+
+/* the text of the links is trimmed to its cap height (like in Figma, link height 15px), so gap 20px is the real distance */
+.footer__menu .menu-link__text {
+  display: block;
+  text-box: trim-both cap alphabetic;
 }
 
 .footer__social {
