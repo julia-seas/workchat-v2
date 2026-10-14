@@ -2,8 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>WorkChat Seattle — Empowering women, advancing careers</title>
+  <title>WorkChat Seattle | Career community for immigrant women</title>
   <meta name="viewport" content="width=1440">
+  <meta name="description" content="WorkChat Seattle is a non-profit that helps immigrant women grow professionally, connect with mentors, and find their next opportunity through events and community.">
+  <link rel="canonical" href="https://julia-seas.github.io/workchat-v2/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WorkChat Seattle">
+  <meta property="og:title" content="WorkChat Seattle | Career community for immigrant women">
+  <meta property="og:description" content="WorkChat Seattle is a non-profit that helps immigrant women grow professionally, connect with mentors, and find their next opportunity through events and community.">
+  <meta property="og:url" content="https://julia-seas.github.io/workchat-v2/">
+  <meta property="og:image" content="https://julia-seas.github.io/workchat-v2/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Smiling woman walking past an office building">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WorkChat Seattle | Career community for immigrant women">
+  <meta name="twitter:description" content="WorkChat Seattle is a non-profit that helps immigrant women grow professionally, connect with mentors, and find their next opportunity through events and community.">
+  <meta name="twitter:image" content="https://julia-seas.github.io/workchat-v2/assets/og-image.jpg">
   <link rel="preload" href="assets/fonts/GoogleSans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add("js");</script>
@@ -242,9 +257,9 @@
         <button class="vbtn" type="button" aria-label="Предыдущий отзыв" data-slider-prev>
           <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-left.svg" alt=""></span>
         </button>
-        <div class="testimonials__viewport" role="group" aria-roledescription="carousel" aria-label="Our Stories" tabindex="0">
+        <div class="testimonials__viewport" role="region" aria-roledescription="carousel" aria-label="Отзывы" tabindex="0">
           <div class="testimonials__track">
-            <article class="testimonial is-active" role="group" aria-roledescription="slide" aria-label="1 / 2">
+            <article class="testimonial is-active" aria-label="Отзыв 1 из 2">
               <div class="testimonial__photo" role="img" aria-label="Kristina E. with her child"></div>
               <img class="testimonial__quote" src="assets/quote.svg" alt="">
               <div class="testimonial__body">
@@ -257,7 +272,7 @@
                 <p class="testimonial__author">Kristina E.</p>
               </div>
             </article>
-            <article class="testimonial" role="group" aria-roledescription="slide" aria-label="2 / 2" aria-hidden="true" style="--photo-1x: url('assets/img/testimonial-photo-02-375.webp'); --photo-2x: url('assets/img/testimonial-photo-02-750.webp'); --photo-position: center bottom">
+            <article class="testimonial" aria-label="Отзыв 2 из 2" inert style="--photo-1x: url('assets/img/testimonial-photo-02-375.webp'); --photo-2x: url('assets/img/testimonial-photo-02-750.webp'); --photo-position: center bottom">
               <div class="testimonial__photo" role="img" aria-label="Yana B."></div>
               <img class="testimonial__quote" src="assets/quote.svg" alt="">
               <div class="testimonial__body">
@@ -728,19 +743,9 @@
       var current = 0;
       var busy = false;
 
-      // invisible slides: aria-hidden, nothing inside them can be focused
+      // invisible slides are inert: not focusable, not clickable, hidden from assistive technology
       function setHidden(slide, hidden) {
-        slide.setAttribute("aria-hidden", hidden ? "true" : "false");
-        Array.prototype.forEach.call(slide.querySelectorAll("a, button, input, select, textarea, [tabindex]"), function (el) {
-          if (hidden) {
-            if (!el.hasAttribute("data-tabindex")) el.setAttribute("data-tabindex", el.getAttribute("tabindex") || "");
-            el.setAttribute("tabindex", "-1");
-          } else if (el.hasAttribute("data-tabindex")) {
-            var v = el.getAttribute("data-tabindex");
-            if (v === "") el.removeAttribute("tabindex"); else el.setAttribute("tabindex", v);
-            el.removeAttribute("data-tabindex");
-          }
-        });
+        slide.inert = hidden;
       }
 
       function duration() {
