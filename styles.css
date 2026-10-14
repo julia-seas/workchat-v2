@@ -1033,12 +1033,12 @@ img {
 }
 
 /* per avatar: appear delay, float amplitude (px, total travel), float duration, float start offset */
-.mentorship__avatar--08 { left: 167px; top: 490px; width: 180px; height: 180px; --appear-delay: 400ms;  --float-amp: 6px;  --float-dur: 8s;   --float-offset: 0s; }
-.mentorship__avatar--07 { left: 370px; top: 750px; width: 75px;  height: 75px;  --appear-delay: 460ms;  --float-amp: 11px; --float-dur: 6.5s; --float-offset: 1.2s; }
-.mentorship__avatar--05 { left: 370px; top: 350px; width: 90px;  height: 90px;  --appear-delay: 520ms;  --float-amp: 10px; --float-dur: 7.5s; --float-offset: 2.4s; }
-.mentorship__avatar--04 { left: 978px; top: 306px; width: 60px;  height: 60px;  --appear-delay: 580ms; --float-amp: 12px; --float-dur: 6s;   --float-offset: 0.6s; }
-.mentorship__avatar--03 { left: 903px; top: 677px; width: 210px; height: 210px; --appear-delay: 640ms; --float-amp: 6px;  --float-dur: 10s;  --float-offset: 3s; }
-.mentorship__avatar--02 { left: 1130px; top: 409px; width: 150px; height: 150px; --appear-delay: 700ms; --float-amp: 8px;  --float-dur: 9s;   --float-offset: 1.8s; }
+.mentorship__avatar--08 { left: 167px; top: 490px; width: 180px; height: 180px; --appear-delay: 400ms;  --float-amp: 10px;  --float-dur: 8s;   --float-offset: 0s; }
+.mentorship__avatar--07 { left: 370px; top: 750px; width: 75px;  height: 75px;  --appear-delay: 460ms;  --float-amp: 17px; --float-dur: 6.5s; --float-offset: 1.2s; }
+.mentorship__avatar--05 { left: 370px; top: 350px; width: 90px;  height: 90px;  --appear-delay: 520ms;  --float-amp: 16px; --float-dur: 7.5s; --float-offset: 2.4s; }
+.mentorship__avatar--04 { left: 978px; top: 306px; width: 60px;  height: 60px;  --appear-delay: 580ms; --float-amp: 19px; --float-dur: 6s;   --float-offset: 0.6s; }
+.mentorship__avatar--03 { left: 903px; top: 677px; width: 210px; height: 210px; --appear-delay: 640ms; --float-amp: 10px;  --float-dur: 10s;  --float-offset: 3s; }
+.mentorship__avatar--02 { left: 1130px; top: 409px; width: 150px; height: 150px; --appear-delay: 700ms; --float-amp: 13px;  --float-dur: 9s;   --float-offset: 1.8s; }
 
 /* the photos that are black and white in the file turn colour on hover (avatar 03 is already colour) */
 .mentorship__avatar--08 img,
