@@ -221,24 +221,39 @@
     <!-- testimonials -->
     <section class="container testimonials">
       <h2 class="h2 testimonials__title">Our Stories</h2>
-      <div class="testimonials__row">
-        <button class="vbtn" type="button" aria-label="Previous story">
+      <div class="testimonials__row" id="testimonials-slider">
+        <button class="vbtn" type="button" aria-label="Предыдущий отзыв" data-slider-prev>
           <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-left.svg" alt=""></span>
         </button>
-        <article class="testimonial">
-          <div class="testimonial__photo" role="img" aria-label="Kristina E. with her child"></div>
-          <img class="testimonial__quote" src="assets/quote.svg" alt="">
-          <div class="testimonial__body">
-            <p class="h3 trim testimonial__lead">WorkChat has had a huge impact on my career journey.</p>
-            <div class="testimonial__text">
-              <p>I first joined as a participant, then had the opportunity to help administer online meetings, masterminds, and book clubs.</p>
-              <p>Over the years, WorkChat's helped me pivot my career, prepare for interviews with major tech companies, and stay informed about what's happening in the corporate world.</p>
-              <p>This is an incredible network of like-minded professionals who genuinely want to help each other succeed. I'm so grateful to the founders, Masha Makarenkova and Masha Boone, for creating such a supportive community.</p>
-            </div>
-            <p class="testimonial__author">Kristina E.</p>
+        <div class="testimonials__viewport" role="group" aria-roledescription="carousel" aria-label="Our Stories" tabindex="0">
+          <div class="testimonials__track">
+            <article class="testimonial is-active" role="group" aria-roledescription="slide" aria-label="1 / 2">
+              <div class="testimonial__photo" role="img" aria-label="Kristina E. with her child"></div>
+              <img class="testimonial__quote" src="assets/quote.svg" alt="">
+              <div class="testimonial__body">
+                <p class="h3 trim testimonial__lead">WorkChat has had a huge impact on my career journey.</p>
+                <div class="testimonial__text">
+                  <p>I first joined as a participant, then had the opportunity to help administer online meetings, masterminds, and book clubs.</p>
+                  <p>Over the years, WorkChat's helped me pivot my career, prepare for interviews with major tech companies, and stay informed about what's happening in the corporate world.</p>
+                  <p>This is an incredible network of like-minded professionals who genuinely want to help each other succeed. I'm so grateful to the founders, Masha Makarenkova and Masha Boone, for creating such a supportive community.</p>
+                </div>
+                <p class="testimonial__author">Kristina E.</p>
+              </div>
+            </article>
+            <article class="testimonial" role="group" aria-roledescription="slide" aria-label="2 / 2" aria-hidden="true" style="--photo: url('assets/testimonial-photo-02.png'); --photo-position: center bottom">
+              <div class="testimonial__photo" role="img" aria-label="Yana B."></div>
+              <img class="testimonial__quote" src="assets/quote.svg" alt="">
+              <div class="testimonial__body">
+                <p class="h3 trim testimonial__lead">When I first relocated to Seattle to join Microsoft, this community helped me build both friendships and a professional network.</p>
+                <div class="testimonial__text testimonial__text--padded">
+                  <p>Through thoughtfully organized online and in-person events, I met amazing women, learned from industry experts, and stayed current on topics like AI, hiring trends, and career growth. I'm incredibly grateful to the organizers for creating such a welcoming and supportive space that has made Seattle feel like home.</p>
+                </div>
+                <p class="testimonial__author">Yana B.</p>
+              </div>
+            </article>
           </div>
-        </article>
-        <button class="vbtn" type="button" aria-label="Next story">
+        </div>
+        <button class="vbtn" type="button" aria-label="Следующий отзыв" data-slider-next>
           <span class="round-btn"><img class="round-btn__default" src="assets/btn-round-right.svg" alt=""></span>
         </button>
       </div>
@@ -683,6 +698,103 @@
       }
       window.addEventListener("scroll", update, { passive: true });
       update();
+    })();
+    /* Testimonials slider: the track slides by translateX, the leaving and the arriving card fade and blur.
+       Parameters (duration, scale, blur, opacity) are CSS variables on .testimonials in styles.css. */
+    (function () {
+      var root = document.getElementById("testimonials-slider");
+      if (!root) return;
+
+      var viewport = root.querySelector(".testimonials__viewport");
+      var track = root.querySelector(".testimonials__track");
+      var slides = Array.prototype.slice.call(track.children);
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+      var current = 0;
+      var busy = false;
+
+      // invisible slides: aria-hidden, nothing inside them can be focused
+      function setHidden(slide, hidden) {
+        slide.setAttribute("aria-hidden", hidden ? "true" : "false");
+        Array.prototype.forEach.call(slide.querySelectorAll("a, button, input, select, textarea, [tabindex]"), function (el) {
+          if (hidden) {
+            if (!el.hasAttribute("data-tabindex")) el.setAttribute("data-tabindex", el.getAttribute("tabindex") || "");
+            el.setAttribute("tabindex", "-1");
+          } else if (el.hasAttribute("data-tabindex")) {
+            var v = el.getAttribute("data-tabindex");
+            if (v === "") el.removeAttribute("tabindex"); else el.setAttribute("tabindex", v);
+            el.removeAttribute("data-tabindex");
+          }
+        });
+      }
+
+      function duration() {
+        var v = getComputedStyle(root.parentNode).getPropertyValue("--slider-duration").trim();
+        return v.indexOf("ms") > -1 ? parseFloat(v) : parseFloat(v) * 1000 || 600;
+      }
+
+      slides.forEach(function (s, i) { setHidden(s, i !== current); });
+      viewport.style.height = slides[current].offsetHeight + "px";
+
+      function go(dir) {
+        if (busy || slides.length < 2) return;
+        var from = slides[current];
+        var next = (current + dir + slides.length) % slides.length;
+        var to = slides[next];
+        current = next;
+
+        if (reduce.matches) {
+          from.classList.remove("is-active");
+          to.classList.add("is-active");
+          setHidden(from, true);
+          setHidden(to, false);
+          viewport.style.height = to.offsetHeight + "px";
+          return;
+        }
+
+        busy = true;
+        // the arriving card waits next to the current one, already dimmed
+        to.style.setProperty("--slot", dir);
+        to.classList.add("is-incoming", "is-dim");
+        setHidden(to, false);
+        void track.offsetWidth; // fix the start state
+
+        [from, to].forEach(function (s) { s.classList.add("is-animating"); });
+        track.classList.add("is-animating");
+        viewport.classList.add("is-sliding");
+        from.classList.add("is-dim");
+        to.classList.remove("is-dim");
+        track.style.transform = "translateX(" + (-dir * 900) + "px)";
+        viewport.style.height = to.offsetHeight + "px";
+
+        var done = false;
+        function finish() {
+          if (done) return;
+          done = true;
+          track.removeEventListener("transitionend", onEnd);
+          track.classList.remove("is-animating");
+          track.style.transform = "";
+          [from, to].forEach(function (s) { s.classList.remove("is-animating"); });
+          from.classList.remove("is-active", "is-dim");
+          setHidden(from, true);
+          to.classList.remove("is-incoming");
+          to.classList.add("is-active");
+          to.style.removeProperty("--slot");
+          viewport.classList.remove("is-sliding");
+          busy = false;
+        }
+        function onEnd(e) {
+          if (e.target === track && e.propertyName === "transform") finish();
+        }
+        track.addEventListener("transitionend", onEnd);
+        setTimeout(finish, duration() + 150);
+      }
+
+      root.querySelector("[data-slider-prev]").addEventListener("click", function () { go(-1); });
+      root.querySelector("[data-slider-next]").addEventListener("click", function () { go(1); });
+      root.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+        else if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+      });
     })();
   </script>
 </body>

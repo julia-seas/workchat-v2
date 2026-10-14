@@ -1117,6 +1117,12 @@ img {
 /* ---------- testimonials ---------- */
 
 .testimonials {
+  /* slider parameters: change them here */
+  --slider-duration: 600ms;
+  --slider-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --slider-dim-opacity: 0.4;
+  --slider-dim-blur: 3px; /* 0px: opacity only */
+
   height: 648px;
   margin-top: 160px;
 }
@@ -1140,19 +1146,87 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: stretch;
   width: 150px;
-  height: 538px;
   padding: 0;
   border: 0;
   background: var(--decor-bg-neutral);
   cursor: pointer;
 }
 
-.testimonial {
+/* window: one card is visible, the track slides inside it */
+.testimonials__viewport {
   position: relative;
+  flex: none;
   width: 900px;
   height: 538px;
+  overflow: hidden;
+}
+
+.testimonials__viewport:focus-visible {
+  outline: 2px solid var(--text-body);
+  outline-offset: -2px;
+}
+
+/* the reveal rule overrides `transition`, so the height is added to it here */
+.js .testimonials__viewport.reveal {
+  transition:
+    opacity 600ms ease-out var(--reveal-delay, 0ms),
+    transform 600ms ease-out var(--reveal-delay, 0ms),
+    height var(--slider-duration) var(--slider-ease);
+}
+
+.testimonials__viewport.is-sliding {
+  transition: height var(--slider-duration) var(--slider-ease);
+}
+
+.testimonials__track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 900px;
+}
+
+.testimonials__track.is-animating {
+  transition: transform var(--slider-duration) var(--slider-ease);
+  will-change: transform;
+}
+
+.testimonial {
+  position: absolute;
+  left: calc(var(--slot, 0) * 900px);
+  top: 0;
+  width: 900px;
+  height: 538px;
+  visibility: hidden;
   background: var(--bg-card-neutral);
+}
+
+.testimonial.is-active,
+.testimonial.is-incoming {
+  visibility: visible;
+}
+
+/* depth: the card leaving and the card arriving are dimmed and blurred */
+.testimonial.is-dim {
+  opacity: var(--slider-dim-opacity);
+  filter: blur(var(--slider-dim-blur));
+}
+
+.testimonial.is-animating {
+  transition:
+    opacity var(--slider-duration) var(--slider-ease),
+    filter var(--slider-duration) var(--slider-ease);
+  will-change: opacity, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials__viewport.reveal,
+  .testimonials__viewport.is-sliding,
+  .testimonials__track.is-animating,
+  .testimonial.is-animating {
+    transition: none;
+  }
 }
 
 .testimonial__photo {
@@ -1167,7 +1241,7 @@ img {
      so there is just one edge and no outline around the ring. */
   border: 20px solid var(--white-alpha-90);
   border-radius: 50%;
-  background: url("assets/testimonial-photo.png") center / cover no-repeat border-box;
+  background: var(--photo, url("assets/testimonial-photo.png")) var(--photo-position, center) / cover no-repeat border-box;
 }
 
 .testimonial__quote {
@@ -1182,7 +1256,7 @@ img {
   position: absolute;
   left: 450px;
   top: 80px;
-  width: 418px;
+  width: 390px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1194,6 +1268,10 @@ img {
 
 .testimonial__text p + p {
   margin-top: 1.3em;
+}
+
+.testimonial__text--padded {
+  padding-bottom: 1.3em; /* empty line before the author, as in the Figma card */
 }
 
 .testimonial__author {
