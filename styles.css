@@ -620,15 +620,15 @@ img {
   overflow: hidden;
 }
 
-/* original photo placed like in the design: 1009px tall, its top 96px above the frame.
-   The 96px above the frame is the reserve the parallax drifts through (--parallax-shift <= 96px). */
+/* photo placed like in the design: 960px tall (1536x1024 scaled to the frame width), 310px of it below the frame.
+   The 60px above the frame is the reserve the parallax drifts through (= --parallax-shift). */
 .hero__image {
   position: absolute;
   left: 0;
-  top: -96px;
+  top: -60px;
   display: block;
   width: 100%;
-  height: 1009px;
+  height: 960px;
   max-width: none;
   object-fit: fill;
 }
@@ -1460,8 +1460,10 @@ img {
   left: 120px;
   top: 0;
   width: 300px;
-  height: 432px;
-  object-fit: fill;
+  height: 427px;
+  /* Figma crop: the 1536x1024 photo is 640.5px wide here, its window starts 191.6px from the left */
+  object-fit: cover;
+  object-position: 56.27% 50%;
 }
 
 .footer__legal {
